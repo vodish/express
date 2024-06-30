@@ -13,7 +13,7 @@ app.use(cors({
 app.listen(PORT, () => console.log(`Listen port http://localhost:${PORT}`))
 
 
-app.get('/test', (req: Request, res: Response) => {
+app.get('/setcookie', (req: Request, res: Response) => {
   const now = Date.now()
   res.cookie('user_token', now, { httpOnly: true });
   res.json({ test: 'test ' + now })
