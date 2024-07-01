@@ -3,8 +3,7 @@ import multer from 'multer'
 
 const { PORT = 3100 } = process.env;
 const cors = require('cors')
-// const upload = multer({dest: '/upload'})
-const upload = multer()
+const upload = multer({dest: '/upload'})
 
 
 const app = express();
@@ -22,12 +21,11 @@ app.get('/setcookie', (req: Request, res: Response) => {
   res.json({ test: 'test ' + now })
 });
 
-app.post('/formdata', upload.none(), (req: Request, res: Response) => {
-  
-  // res.json({body: req.body, file: req.file})
-  res.json({body: req.body})
-});
+app.post('/formdata', upload.single('avatar'), (req: Request, res: Response) => {
 
+  res.json({body: req.body, file: req.file})
+  
+});
 
 
 app.use( (err: any, req: Request, res: Response, next: NextFunction) => {
